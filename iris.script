@@ -1,0 +1,8 @@
+zn "DEMO"
+set sc = $SYSTEM.OBJ.LoadDir("/projectGit/src/Demo", "ck", , 1)
+if '$SYSTEM.Status.IsOK(sc) do $SYSTEM.Status.DisplayError(sc) quit
+set production = "Demo.Order.Production"
+set ^Ens.Configuration("csp","LastProduction") = production
+do ##class(Ens.Director).SetAutoStart(production)
+do ##class(Ens.Director).StartProduction(production)
+write !,"Produccion iniciada correctamente: ",production,!
