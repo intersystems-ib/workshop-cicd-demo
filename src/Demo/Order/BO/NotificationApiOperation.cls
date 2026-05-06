@@ -5,7 +5,7 @@ Parameter INVOCATION = "Queue";
 
 Property TenantId As %String [ InitialExpression = "XYZ-313" ];
 
-Parameter SETTINGS = "MyParams:TenantId,ReplyCodeActions,RetryInterval,AlertRetryGracePeriod:Alerting,FailureTimeout,QueueCountAlert:Alerting,QueueWaitAlert:Alerting,SendSuperSession";
+Parameter SETTINGS = "TenantId,ReplyCodeActions,RetryInterval,AlertRetryGracePeriod:Alerting,FailureTimeout,QueueCountAlert:Alerting,QueueWaitAlert:Alerting,SendSuperSession";
 
 /// Send notification
 Method SendNotification(pRequest As Demo.Order.Msg.NotificationReq, Output pResponse As Demo.Order.Msg.NotificationRsp) As %Status
