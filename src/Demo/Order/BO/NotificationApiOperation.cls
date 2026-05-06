@@ -3,7 +3,7 @@ Class Demo.Order.BO.NotificationApiOperation Extends EnsLib.REST.Operation
 
 Parameter INVOCATION = "Queue";
 
-Property TenantId As %String [ InitialExpression = "XYZ-333" ];
+Property TenantId As %String [ InitialExpression = "XYZ-133" ];
 
 Parameter SETTINGS = "MyParams:TenantId,ReplyCodeActions,RetryInterval,AlertRetryGracePeriod:Alerting,FailureTimeout,QueueCountAlert:Alerting,QueueWaitAlert:Alerting,SendSuperSession";
 
