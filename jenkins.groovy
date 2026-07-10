@@ -17,11 +17,14 @@ pipeline {
 
         stage('Validar script') {
             steps {
-                sh '''
-                    set -eu
-                    test -f shell_script.sh
-                    chmod +x shell_script.sh
-                '''
+                sshagent(credentials: ["${env.SSH_CREDENTIALS_ID}"]) {
+                    sh '''
+                        set -eu
+                        
+                        ssh -o StrictHostKeyChecking=no "${REMOTE_USER}@${REMOTE_HOST}" \
+                          "sudo test -f '/${REMOTE_SCRIPT_NAME}' | sudo chmod +x '/${REMOTE_SCRIPT_NAME}'"
+                    '''
+                }
             }
         }
 
@@ -32,7 +35,7 @@ pipeline {
                         set -eu
 
                         ssh -o StrictHostKeyChecking=no "${REMOTE_USER}@${REMOTE_HOST}" \
-                          "sudo sh '/${REMOTE_SCRIPT_NAME}'" | tee remote_execution.log
+                          "sudo sh '/${REMOTE_SCRIPT_NAME}' | tee remote_execution.log"
                     '''
                 }
             }
